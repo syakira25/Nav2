@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.jameedean.nav2">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_INTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.VIBRATE"/>
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="E-IDEAS APPS"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name=".LoginActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+                <!--<category android:name="android.intent.category.HOME" />-->
+                <!--<category android:name="android.intent.category.DEFAULT" />-->
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".RegisterActivity"
+            android:label="E-IDEAS"
+            android:parentActivityName=".LoginActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.jameedean.nav2.LoginActivity" />
+        </activity>
+        <activity
+            android:name=".SignIn_Activity"
+            android:label="E-IDEAS"
+            android:parentActivityName=".LoginActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.jameedean.nav2.LoginActivity" />
+        </activity>
+        <activity
+            android:name=".ResetPasswordActivity"
+            android:label="E-IDEAS"
+            android:parentActivityName=".SignIn_Activity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.jameedean.nav2.SignIn_Activity" />
+        </activity>
+        <activity
+            android:name=".NavDrawerActivity"
+            android:label="E-IDEAS"
+            android:parentActivityName=".LoginActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.jameedean.nav2.LoginActivity" />
+        </activity>
+        <activity
+            android:name=".NoteActivity"
+            android:label="E-IDEAS"
+            android:parentActivityName=".NavDrawerActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.jameedean.nav2.NavDrawerActivity" />
+        </activity>
+        <activity
+            android:name=".AgencyMain_Activity"
+            android:label="E-IDEAS"
+            android:parentActivityName=".NavDrawerActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.jameedean.nav2.NavDrawerActivity" />
+        </activity>
+        <activity
+            android:name=".AgencyActivity"
+            android:label="E-IDEAS"
+            android:parentActivityName=".AgencyMain_Activity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.jameedean.nav2.AgencyMain_Activity" />
+        </activity>
+        <activity android:name=".PasswordApps_Activity"
+            android:parentActivityName=".NavDrawerActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+        <meta-data
+            android:name="android.support.PARENT_ACTIVITY"
+            android:value="com.example.jameedean.nav2.NavDrawerActivity" />
+        </activity>
+        <activity
+            android:name=".SettingsHeadersActivity"
+            android:label="@string/title_activity_settings"/>
+        <!--activity
+            android:name=".SettingsActivity"
+            android:label="@string/title_activity_settings"-->
+        <activity android:name=".SignatureActivity"/>
+        <activity android:name=".CreatePasswordActivity"/>
+        <activity android:name=".InputPasswordActivity" />
+
+    </application>
+
+</manifest>

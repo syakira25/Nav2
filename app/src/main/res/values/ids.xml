@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="post_description" type="id" />
+    <item name="post_title" type="id" />
+    <item name="action_logout" type="id" />
+    <item name="action_agency" type="id" />
+    <item name="action_notes" type="id" />
+    <item name="tv_name" type="id" />
+    <item name="tv_email" type="id" />
+    <item name="rv_agency" type="id" />
+    <item name="rv_notes" type="id" />
+</resources>

@@ -1,0 +1,63 @@
+{
+  "project_info": {
+    "project_number": "507712265550",
+    "firebase_url": "https://navapps-bd9f3.firebaseio.com",
+    "project_id": "navapps-bd9f3",
+    "storage_bucket": "navapps-bd9f3.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:507712265550:android:4c49ca42d2da81d4",
+        "android_client_info": {
+          "package_name": "com.example.jameedean.nav2"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "507712265550-doesn0bs8ekm1cq525np2u5e0ouv03g8.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.jameedean.nav2",
+            "certificate_hash": "779cf33863d244e9391be7146205b4246e304cb0"
+          }
+        },
+        {
+          "client_id": "507712265550-o3nima78ul0inpa13ba4repohe0sra8q.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.jameedean.nav2",
+            "certificate_hash": "9f923c9852bbdc6a6ecbac68db89f79b0786980a"
+          }
+        },
+        {
+          "client_id": "507712265550-hvpsiabcvuaa9d356ql1ls3ltn9lmjnp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBiGFsAlKxKTclXEMtupRr_ohhl3fjZ2iE"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "507712265550-hvpsiabcvuaa9d356ql1ls3ltn9lmjnp.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
