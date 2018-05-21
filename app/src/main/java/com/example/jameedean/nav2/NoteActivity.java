@@ -64,6 +64,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.UUID;
 
 public class NoteActivity extends AppCompatActivity {
 
@@ -79,8 +80,8 @@ public class NoteActivity extends AppCompatActivity {
     private Uri mDrawingUri;
     private Uri mImageUri;
     private Paint paintDraw;
-    private String mDrawingLocalPath;
-    private String mImageLocalPath;
+    private Uri mDrawingLocalPath;
+    private Uri mImageLocalPath;
 
     private Bitmap bitmapMaster;
     private Canvas canvasMaster;
@@ -375,7 +376,7 @@ public class NoteActivity extends AppCompatActivity {
 
         switch (item.getItemId()) {
             case R.id.action_save:
-                save();
+                save(false);
                 //sendEmail();
                 break;
             case R.id.action_delete:
@@ -389,8 +390,7 @@ public class NoteActivity extends AppCompatActivity {
                 }
                 break;
             case  R.id.action_send:
-                save();
-                sendEmail();
+                save(true);
                 break;
         }
 
@@ -604,42 +604,39 @@ public class NoteActivity extends AppCompatActivity {
     /***
      * Trigger save button
      */
-    private void save() {
+    private void save(boolean send) {
 
         if(mHaveDrawing || mHaveImage) {
 
             if (mHaveDrawing && mDrawImg != null) {
-                uploadDrawing();
+                uploadDrawing(send);
             }
 
             if (mHaveImage && bitmapMaster != null) {
-                uploadImage();
+                uploadImage(send);
             }
 
         } else {
 
             // If there is not image need to be uploaded,
             // skip the uploading process and jump to save record
-            saveToDB();
+            saveToDB(send);
         }
     }
 
-    private void uploadDrawing() {
+    private void uploadDrawing(final boolean send) {
 
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         mDrawImg.compress(Bitmap.CompressFormat.JPEG, 100, baos);
         byte[] data = baos.toByteArray();
-        File drawFile = makeTemporaryImage(data);
-        if(drawFile != null) {
-            mDrawingLocalPath = drawFile.getAbsolutePath();
-        }
+        mDrawingLocalPath = saveFileToGallery(data);
 
         OnSuccessListener successListener = new OnSuccessListener<UploadTask.TaskSnapshot>() {
             @Override
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                 mDrawingUri = taskSnapshot.getDownloadUrl();
                 mHaveDrawing = false;
-                saveToDB();
+                saveToDB(send);
             }
         };
 
@@ -658,22 +655,19 @@ public class NoteActivity extends AppCompatActivity {
                 .addOnFailureListener(failureListener);
     }
 
-    private void uploadImage(){
+    private void uploadImage(final boolean send){
 
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         bitmapMaster.compress(Bitmap.CompressFormat.JPEG, 100, baos);
         byte[] data = baos.toByteArray();
-        File imageFile = makeTemporaryImage(data);
-        if(imageFile != null) {
-            mDrawingLocalPath = imageFile.getAbsolutePath();
-        }
+        mImageLocalPath = saveFileToGallery(data);
 
         OnSuccessListener successListener = new OnSuccessListener<UploadTask.TaskSnapshot>() {
             @Override
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                 mImageUri = taskSnapshot.getDownloadUrl();
                 mHaveImage = false;
-                saveToDB();
+                saveToDB(send);
 
             }
         };
@@ -695,7 +689,7 @@ public class NoteActivity extends AppCompatActivity {
     /***
      * Save to Database
      */
-    private void saveToDB() {
+    private void saveToDB(final boolean send) {
 
         // Image and drawing flag must be set to false before further by upload OnCompleteListener
         // If not return
@@ -737,6 +731,11 @@ public class NoteActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
                         Toast.makeText(NoteActivity.this, "Note saved", Toast.LENGTH_SHORT).show();
+
+                        if(send) {
+                            sendEmail();
+                        }
+
                         finish();
                     }
                 });
@@ -776,26 +775,24 @@ public class NoteActivity extends AppCompatActivity {
 
     }
 
-    private File makeTemporaryImage(byte[] data) {
+    private Uri saveFileToGallery(byte[] data) {
 
-        File file = null;
+        Bitmap bitmap = BitmapFactory.decodeByteArray(data, 0, data.length);
 
-        try {
-            file = createTemporaryFile();
-            FileOutputStream fos = new FileOutputStream(file);
-            fos.write(data);
-            fos.close();
+        String savedImageUrl =
+                MediaStore.Images.Media.insertImage(
+                        getContentResolver(),
+                        bitmap,
+                        UUID.randomUUID().toString() + ".png",
+                        "drawing"
+                );
 
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        return file;
+        return Uri.parse(savedImageUrl);
     }
 
     private File createTemporaryFile() throws IOException {
 
-        File file = File.createTempFile("temp", ".jpg", getCacheDir());
+        File file = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES), "eideas");
         // delete file on exit
         file.deleteOnExit();
 
