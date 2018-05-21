@@ -207,14 +207,17 @@ public class AgencyMain_Activity extends MainActivity
             // Handle the camera action
             Intent i = new Intent(this,NavDrawerActivity.class);
             startActivity(i);
-        } else if (id == R.id.nav_notepad) {
+        }else if(id == R.id.ic) {
+            Intent i = new Intent(this, NoteActivity.class);
+            startActivity(i);
+        }else if (id == R.id.nav_notepad) {
             Intent i = new Intent(this,AgencyMain_Activity.class);
             startActivity(i);
-
         } else if (id == R.id.nav_notification) {
 
         } else if (id == R.id.nav_manage) {
-
+            Intent i = new Intent(this,PasswordApps_Activity.class);
+            startActivity(i);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

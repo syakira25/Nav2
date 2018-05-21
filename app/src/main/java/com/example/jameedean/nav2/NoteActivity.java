@@ -432,23 +432,32 @@ public class NoteActivity extends AppCompatActivity {
             title = mTVTitle.getText().toString();
             agency = simpleSpinner.getSelectedItem().toString();
             description = mTVDescription.getText().toString();
-            final Intent emailIntent = new Intent(Intent.ACTION_SEND);
-            emailIntent.setType("image/png");
+//            final Intent emailIntent = new Intent(Intent.ACTION_SEND);
+            final  Intent emailIntent = new Intent();
+            emailIntent.setType("image/*");
             emailIntent.putExtra(android.content.Intent.EXTRA_EMAIL, new String[]{agency});
             emailIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, title);
             if (mImageUri != null) {
+                emailIntent.setAction(Intent.ACTION_SEND);
                 emailIntent.putExtra(Intent.EXTRA_STREAM, mImageUri);
             }
 
-            if (mDrawingUri != null) {
+            else if (mDrawingUri != null) {
+                emailIntent.setAction(Intent.ACTION_SEND);
                 emailIntent.putExtra(Intent.EXTRA_STREAM, mDrawingUri);
+            }
+
+            else{
+                emailIntent.setAction(Intent.ACTION_SEND_MULTIPLE);
+                emailIntent.putExtra(Intent.EXTRA_STREAM, mDrawingUri);
+                emailIntent.putExtra(Intent.EXTRA_STREAM, mImageUri);
             }
             emailIntent.putExtra(android.content.Intent.EXTRA_TEXT, description);
             this.startActivity(Intent.createChooser(emailIntent, "Sending email..."));
         } catch (android.content.ActivityNotFoundException ex) {
             Toast.makeText(this, "Request failed try again: ", Toast.LENGTH_LONG).show();
         }
-        createNotification1();
+//        createNotification1();
     }
 
     private void takePicture() {

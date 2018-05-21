@@ -13,7 +13,7 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/ic_launcher2_round"
         android:label="E-IDEAS APPS"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
@@ -25,9 +25,21 @@
                 <!--<category android:name="android.intent.category.DEFAULT" />-->
             </intent-filter>
         </activity>
+        <service
+            android:name=".MyFirebaseInstanceIdService">
+            <intent-filter>
+                <action android:name="com.google.firebase.INSTANCE_ID_EVENT"/>
+            </intent-filter>
+        </service>
+        <service
+            android:name=".MyFirebaseMessagingService">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT"/>
+            </intent-filter>
+        </service>
         <activity
             android:name=".RegisterActivity"
-            android:label="E-IDEAS"
+            android:label="E-IDEAS APPS"
             android:parentActivityName=".LoginActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
@@ -36,7 +48,7 @@
         </activity>
         <activity
             android:name=".SignIn_Activity"
-            android:label="E-IDEAS"
+            android:label="E-IDEAS APPS"
             android:parentActivityName=".LoginActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
@@ -45,7 +57,7 @@
         </activity>
         <activity
             android:name=".ResetPasswordActivity"
-            android:label="E-IDEAS"
+            android:label="E-IDEAS APPS"
             android:parentActivityName=".SignIn_Activity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
@@ -54,7 +66,7 @@
         </activity>
         <activity
             android:name=".NavDrawerActivity"
-            android:label="E-IDEAS"
+            android:label="E-IDEAS APPS"
             android:parentActivityName=".LoginActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
@@ -63,7 +75,7 @@
         </activity>
         <activity
             android:name=".NoteActivity"
-            android:label="E-IDEAS"
+            android:label="E-IDEAS APPS"
             android:parentActivityName=".NavDrawerActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
@@ -72,7 +84,7 @@
         </activity>
         <activity
             android:name=".AgencyMain_Activity"
-            android:label="E-IDEAS"
+            android:label="E-IDEAS APPS"
             android:parentActivityName=".NavDrawerActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
@@ -81,7 +93,7 @@
         </activity>
         <activity
             android:name=".AgencyActivity"
-            android:label="E-IDEAS"
+            android:label="E-IDEAS APPS"
             android:parentActivityName=".AgencyMain_Activity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data

@@ -4,4 +4,10 @@
     <color name="colorPrimaryDark">#6539ba</color>
     <color name="colorAccent">#FF4081</color>
     <color name="colorWrong">#8c393f</color>
+    <color name="textColor">#6e6e6e</color>
+    <color name="editTextBG">#DADADA</color>
+    <color name="transparent">#00000000</color>
+
+    <!-- MaterialDrawer DEFAULT colors -->
+    <color name="material_drawer_background">#F9F9F9</color>
 </resources>

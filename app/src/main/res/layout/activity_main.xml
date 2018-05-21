@@ -21,15 +21,15 @@
 
         <TextView
             android:id="@+id/textView"
-            android:layout_width="226dp"
+            android:layout_width="175dp"
             android:layout_height="wrap_content"
             android:layout_above="@+id/imageView"
             android:layout_centerHorizontal="true"
             android:layout_gravity="center_horizontal"
-            android:fontFamily="@font/helvetica"
+            android:fontFamily="@font/ftv_font"
             android:text="E-IDEAS"
             android:textColor="@color/colorPrimary"
-            android:textSize="50dp"
+            android:textSize="55dp"
             android:textStyle="bold|italic" />
 
         <!--TextView

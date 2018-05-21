@@ -4,12 +4,16 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_list"
-            android:icon="@drawable/ic_clipboards"
-            android:title="All List" />
+            android:icon="@drawable/ic_notepad2"
+            android:title="Ideas" />
+        <item
+            android:id="@+id/ic"
+            android:icon="@drawable/ic_note_add_symbol"
+            android:title="Add Ideas" />
         <item
             android:id="@+id/nav_notepad"
             android:icon="@drawable/ic_notepad"
-            android:title="Agency List" />
+            android:title="Agencies" />
         <item
             android:id="@+id/nav_notification"
             android:icon="@drawable/ic_notification"

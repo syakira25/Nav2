@@ -123,7 +123,7 @@ public class AgencyActivity extends AppCompatActivity {
                 save(model, new DatabaseReference.CompletionListener() {
                     @Override
                     public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
-                        actionNotification(databaseError, R.string.done_saved);
+                        actionNotification(databaseError, R.string.done_saved2);
                     }
                 });
                 break;
@@ -132,7 +132,7 @@ public class AgencyActivity extends AppCompatActivity {
                     mReference1.child(mId2).removeValue(new DatabaseReference.CompletionListener() {
                         @Override
                         public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
-                            actionNotification(databaseError, R.string.done_deleted);
+                            actionNotification(databaseError, R.string.done_deleted2);
                         }
                     });
                 }

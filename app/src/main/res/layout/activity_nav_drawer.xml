@@ -5,8 +5,8 @@
     android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fitsSystemWindows="false"
-    tools:openDrawer="start">
+    android:fitsSystemWindows="true"
+    tools:openDrawer="right">
 
     <include
     layout="@layout/app_bar_nav_drawer"
@@ -18,7 +18,7 @@
     android:layout_width="wrap_content"
     android:layout_height="match_parent"
     android:layout_gravity="start"
-    android:fitsSystemWindows="true"
+    android:fitsSystemWindows="false"
     app:headerLayout="@layout/nav_header_nav_drawer"
     app:menu="@menu/activity_nav_drawer_drawer" />
 

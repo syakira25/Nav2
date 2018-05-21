@@ -22,9 +22,10 @@ public class SignatureActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signature);
 
-       mDrawingView = findViewById(R.id.signatureview);
-       Button fABAccept = findViewById(R.id.bt_send);
-       // FloatingActionButton fABCancel = findViewById(R.id.fab_cancel);
+        mDrawingView = findViewById(R.id.signatureview);
+        Button fABAccept = findViewById(R.id.bt_send);
+        Button fABCancel = findViewById(R.id.bt_clear);
+        // FloatingActionButton fABCancel = findViewById(R.id.fab_cancel);
 
         setupSignature();
 
@@ -36,16 +37,20 @@ public class SignatureActivity extends AppCompatActivity {
                 setResult(RESULT_OK, intent);
                 finish();
             }
-        });}
+        });
 
-        /*fABCancel.setOnClickListener(new View.OnClickListener() {
+        fABCancel.setOnClickListener(new View.OnClickListener(){
             @Override
-            public void onClick(View view) {
-                setResult(RESULT_CANCELED);
-                finish();
+            public void onClick (View view){
+                //setResult(RESULT_CANCELED);
+                // finish();
+
+                if (mDrawingView != null) {
+                    mDrawingView.clearCanvas();// Clear Canvas
+                }
             }
         });
-    }*/
+    }
 
     private void setupSignature() {
         DisplayMetrics metrics = new DisplayMetrics();

@@ -30,7 +30,7 @@ import com.google.firebase.auth.GoogleAuthProvider;
 
 public class RegisterActivity extends AppCompatActivity{
 
-    private Button BtnSignIn;
+    private Button BtnSignIn, BtnSignUp;
     private EditText txtEmailAddress;
     private EditText txtPassword;
     private FirebaseAuth firebaseAuth;
@@ -49,6 +49,7 @@ public class RegisterActivity extends AppCompatActivity{
         FirebaseUser currentUser = mAuth.getCurrentUser();
         //redirect to main page
         BtnSignIn = (Button) findViewById(R.id.sign_in_button);
+        BtnSignUp = (Button) findViewById(R.id.btn_signUp);
         txtEmailAddress = (EditText) findViewById(R.id.txtEmailRegistration);
         txtPassword = (EditText) findViewById(R.id.txtPasswordRegistration);
         firebaseAuth = FirebaseAuth.getInstance();
