@@ -79,6 +79,8 @@ public class NoteActivity extends AppCompatActivity {
     private Uri mDrawingUri;
     private Uri mImageUri;
     private Paint paintDraw;
+    private String mDrawingLocalPath;
+    private String mImageLocalPath;
 
     private Bitmap bitmapMaster;
     private Canvas canvasMaster;
@@ -437,14 +439,14 @@ public class NoteActivity extends AppCompatActivity {
             emailIntent.setType("image/*");
             emailIntent.putExtra(android.content.Intent.EXTRA_EMAIL, new String[]{agency});
             emailIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, title);
-            if (mImageUri != null) {
+            if (mImageLocalPath != null) {
                 emailIntent.setAction(Intent.ACTION_SEND);
-                emailIntent.putExtra(Intent.EXTRA_STREAM, mImageUri);
+                emailIntent.putExtra(Intent.EXTRA_STREAM, mImageLocalPath);
             }
 
-            else if (mDrawingUri != null) {
+            else if (mDrawingLocalPath != null) {
                 emailIntent.setAction(Intent.ACTION_SEND);
-                emailIntent.putExtra(Intent.EXTRA_STREAM, mDrawingUri);
+                emailIntent.putExtra(Intent.EXTRA_STREAM, mDrawingLocalPath);
             }
 
             else{
@@ -627,6 +629,10 @@ public class NoteActivity extends AppCompatActivity {
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         mDrawImg.compress(Bitmap.CompressFormat.JPEG, 100, baos);
         byte[] data = baos.toByteArray();
+        File drawFile = makeTemporaryImage(data);
+        if(drawFile != null) {
+            mDrawingLocalPath = drawFile.getAbsolutePath();
+        }
 
         OnSuccessListener successListener = new OnSuccessListener<UploadTask.TaskSnapshot>() {
             @Override
@@ -657,6 +663,10 @@ public class NoteActivity extends AppCompatActivity {
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         bitmapMaster.compress(Bitmap.CompressFormat.JPEG, 100, baos);
         byte[] data = baos.toByteArray();
+        File imageFile = makeTemporaryImage(data);
+        if(imageFile != null) {
+            mDrawingLocalPath = imageFile.getAbsolutePath();
+        }
 
         OnSuccessListener successListener = new OnSuccessListener<UploadTask.TaskSnapshot>() {
             @Override
@@ -764,6 +774,32 @@ public class NoteActivity extends AppCompatActivity {
         //     NotificationManager notificationManager = (NotificationManager)getSystemService(Context.NOTIFICATION_SERVICE);
         notificationManager.notify(0,notificationBuilder.build());
 
+    }
+
+    private File makeTemporaryImage(byte[] data) {
+
+        File file = null;
+
+        try {
+            file = createTemporaryFile();
+            FileOutputStream fos = new FileOutputStream(file);
+            fos.write(data);
+            fos.close();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return file;
+    }
+
+    private File createTemporaryFile() throws IOException {
+
+        File file = File.createTempFile("temp", ".jpg", getCacheDir());
+        // delete file on exit
+        file.deleteOnExit();
+
+        return file;
     }
 
 }
